@@ -14,7 +14,7 @@ export function Button({
     </StyledButton>
   );
 }
-
+ 
 const StyledButton = styled.button`
   padding: 9px 15px;
   border-radius: 5px;

@@ -1,12 +1,19 @@
 import React from 'react';
-import { Button } from './components';
+import { Header } from './components';
+import styled from 'styled-components'
+
 
 function App() {
   return (
-    <div>
-      <Button type="transperent" color='skyblue'>Click</Button>
-    </div>
+    <Container>
+      <Header />
+    </Container>
   );
 }
+
+const Container = styled.div`
+  margin: 0 auto;
+  text-align: center;
+`
 
 export default App;

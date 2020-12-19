@@ -27,7 +27,13 @@ function App() {
       }
     });
 
-    setTodos(newTodos)
+    setTodos(newTodos);
+  }, [todos]);
+
+  const deleteTodo = useCallback((todoId) => {
+    const newTodos = todos.filter((todo) => todo.id !== todoId);
+
+    setTodos(newTodos);
   }, [todos])
 
   return (
@@ -35,7 +41,7 @@ function App() {
       <Header onButtonClick={setCurrentPage} page={currentPage}/>
       <Form onSubmit={addTodo}/>
       {
-        todos.map(( todo ) => <TodoItem onChangeCompletionStatus={toggleCompletion} {...todo} />) // title={ todo.title } isCompleted={ todo.isCompleted }
+        todos.map(( todo ) => <TodoItem onDelete={deleteTodo} onChangeCompletionStatus={toggleCompletion} {...todo} />) // title={ todo.title } isCompleted={ todo.isCompleted }
       }
     </Container>
   );

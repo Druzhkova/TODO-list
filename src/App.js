@@ -34,14 +34,26 @@ function App() {
     const newTodos = todos.filter((todo) => todo.id !== todoId);
 
     setTodos(newTodos);
-  }, [todos])
+  }, [todos]);
+
+  const filteredTodos = todos.filter((todo) => {
+    if(currentPage === 'active') {
+      return todo.isCompleted === false
+    }
+
+    if(currentPage === 'done') {
+      return todo.isCompleted === true
+    }
+
+    return true;
+  })
 
   return (
     <Container>
       <Header onButtonClick={setCurrentPage} page={currentPage}/>
       <Form onSubmit={addTodo}/>
       {
-        todos.map(( todo ) => <TodoItem onDelete={deleteTodo} onChangeCompletionStatus={toggleCompletion} {...todo} />) // title={ todo.title } isCompleted={ todo.isCompleted }
+        filteredTodos.map(( todo ) => <TodoItem onDelete={deleteTodo} onChangeCompletionStatus={toggleCompletion} {...todo} />) // title={ todo.title } isCompleted={ todo.isCompleted }
       }
     </Container>
   );

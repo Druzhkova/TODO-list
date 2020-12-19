@@ -14,12 +14,7 @@ export function Form({ onSubmit }) {
     [onSubmit, imputValue]
   );
 
-  const onChange = useCallback(
-    (evt) => {
-      setImputValue(evt.target.value);
-    },
-    [setImputValue]
-  );
+  const onChange = useCallback((evt) => setImputValue(evt.target.value), [setImputValue]);
 
   return (
     <StyledForm onSubmit={onSubmitHandler}>

@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Druzhkova/TODO-list/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/Druzhkova/TODO-list/static/js/main.00404172.chunk.js",
+    "main.js.map": "/Druzhkova/TODO-list/static/js/main.00404172.chunk.js.map",
+    "runtime-main.js": "/Druzhkova/TODO-list/static/js/runtime-main.ecd288ee.js",
+    "runtime-main.js.map": "/Druzhkova/TODO-list/static/js/runtime-main.ecd288ee.js.map",
+    "static/js/2.82e27b8d.chunk.js": "/Druzhkova/TODO-list/static/js/2.82e27b8d.chunk.js",
+    "static/js/2.82e27b8d.chunk.js.map": "/Druzhkova/TODO-list/static/js/2.82e27b8d.chunk.js.map",
+    "static/js/3.c7826b79.chunk.js": "/Druzhkova/TODO-list/static/js/3.c7826b79.chunk.js",
+    "static/js/3.c7826b79.chunk.js.map": "/Druzhkova/TODO-list/static/js/3.c7826b79.chunk.js.map",
+    "index.html": "/Druzhkova/TODO-list/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/Druzhkova/TODO-list/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.82e27b8d.chunk.js.LICENSE.txt": "/Druzhkova/TODO-list/static/js/2.82e27b8d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ecd288ee.js",
+    "static/js/2.82e27b8d.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.00404172.chunk.js"
+  ]
+}

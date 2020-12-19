@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Header } from './components';
+import { Header, Form } from './components';
 import styled from 'styled-components'
 
 
@@ -9,6 +9,7 @@ function App() {
   return (
     <Container>
       <Header onButtonClick={setCurrentPage} page={currentPage}/>
+      <Form />
     </Container>
   );
 }

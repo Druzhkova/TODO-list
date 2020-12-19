@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import { Header, Form, TodoItem } from './components';
 import styled from 'styled-components'
 
@@ -48,12 +48,29 @@ function App() {
     return true;
   })
 
+  const isNoTodos = filteredTodos.length === 0;
+
+  const emptyText = useMemo(() => {
+    if (currentPage === "all" || currentPage === "active") {
+      return "Keep calm. There are no todos for today";
+    }
+    return "You haven't done anything yet ";
+  }, [currentPage]);
+
   return (
     <Container>
       <Header onButtonClick={setCurrentPage} page={currentPage}/>
       <Form onSubmit={addTodo}/>
       {
-        filteredTodos.map(( todo ) => <TodoItem onDelete={deleteTodo} onChangeCompletionStatus={toggleCompletion} {...todo} />) // title={ todo.title } isCompleted={ todo.isCompleted }
+         isNoTodos ? (
+          <span>{emptyText}</span>
+        ) : (
+        filteredTodos.map(( todo ) => 
+        <TodoItem
+          onDelete={deleteTodo}
+          onChangeCompletionStatus={toggleCompletion}
+          {...todo} 
+        />)) // title={ todo.title } isCompleted={ todo.isCompleted }
       }
     </Container>
   );

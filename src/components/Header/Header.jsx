@@ -1,40 +1,19 @@
 
-import React, { useCallback } from "react";
-import { Button } from "../Button";
+import React from "react";
 import styled from "styled-components";
+import { NavLink } from 'react-router-dom';
 
-function HeaderButton({ type, onClick, page, children }) {
-  const onClickHandler = useCallback(() => {
-    onClick(type);
-  }, [onClick, type]);
-
-  return (
-    <StyledButton
-      onClick={onClickHandler}
-      type="transparent"
-      color={page === type ? "#28A745" : "deepskyblue"}
-    >
-      {children}
-    </StyledButton>
-  );
-}
-
-export function Header({ page, onButtonClick }) {
+export function Header() {
   return (
     <header>
-      <HeaderButton page={page} onClick={onButtonClick} type="all">
-        All
-      </HeaderButton>
-      <HeaderButton page={page} onClick={onButtonClick} type="active">
-        Active
-      </HeaderButton>
-      <HeaderButton page={page} onClick={onButtonClick} type="done">
-        Done
-      </HeaderButton>
+      <StyledNavLink style={{color: "deepskyblue"}} activeStyle={{ color: "#28A745" }} to="/all">All</StyledNavLink>
+      <StyledNavLink style={{color: "deepskyblue"}} activeStyle={{ color: "#28A745" }} to="/active">Active</StyledNavLink>
+      <StyledNavLink style={{color: "deepskyblue"}} activeStyle={{ color: "#28A745" }} to="/done">Done</StyledNavLink>
     </header>
   );
 }
 
-const StyledButton = styled(Button)`
+const StyledNavLink = styled(NavLink)`
   margin: 20px;
+  text-decoration: none;
 `

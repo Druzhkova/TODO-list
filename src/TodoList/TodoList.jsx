@@ -3,12 +3,16 @@ import styled from "styled-components";
 import { Header, Form, TodoItem } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodoActions, changeTodoCompletionStatus, deleteTodoActions, changeCurrentPage } from "./actions";
+import { useLocation, Route, Switch } from "react-router-dom"
+
 
 export function TodoList() {
   const dispatch = useDispatch();
 
   const currentPage = useSelector((state) => state.todoList.currentPage);
   const todos = useSelector((state) => state.todoList.todos);
+
+  const { pathname } = useLocation();
 
   const addTodo = useCallback((inputValue) => {
     dispatch(addTodoActions(inputValue));
@@ -27,11 +31,11 @@ export function TodoList() {
   }, [dispatch])
 
   const filteredTodos = todos.filter((todo) => {
-    if (currentPage === "active") {
+    if (pathname.includes("active")) {
       return todo.isCompleted === false;
     }
 
-    if (currentPage === "done") {
+    if (pathname.includes("done")) {
       return todo.isCompleted === true;
     }
 
@@ -41,11 +45,11 @@ export function TodoList() {
   const isNoTodos = filteredTodos.length === 0;
 
   const emptyText = useMemo(() => {
-    if (currentPage === "all" || currentPage === "active") {
+    if (pathname.includes("all") || pathname.includes("active")) {
       return "Keep calm. There are no todos for today";
     }
     return "You haven't done anything yet ";
-  }, [currentPage]);
+  }, [pathname]);
 
   return (
     <Container>
@@ -65,8 +69,9 @@ export function TodoList() {
               isCompleted={todo.isCompleted}
             />
           ))
-        ) // {...todos}
+        )
       }
+
     </Container>
   );
 }

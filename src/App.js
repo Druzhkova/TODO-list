@@ -8,15 +8,34 @@ function App() {
   const [todos, setTodos] = useState([]); // { title: '', isCompleted: false/true }
    
   const addTodo = useCallback((inputValue) => {
-    setTodos((prev) => [...prev, { title: inputValue, isCompleted: false }])
+    setTodos((prev) => [...prev, {
+      title: inputValue,
+      isCompleted: false,
+      id: String(Math.random()),
+    }]);
   }, []);
+
+  const toggleCompletion = useCallback((todoId) => {
+    const newTodos = todos.map((todo) => {
+      if(todo.id === todoId) {
+        return {
+          ...todo,
+          isCompleted: !todo.isCompleted,
+        }
+      } else {
+        return todo;
+      }
+    });
+
+    setTodos(newTodos)
+  }, [todos])
 
   return (
     <Container>
       <Header onButtonClick={setCurrentPage} page={currentPage}/>
       <Form onSubmit={addTodo}/>
       {
-        todos.map(( todo ) => <TodoItem {...todo} />) // title={ todo.title } isCompleted={ todo.isCompleted }
+        todos.map(( todo ) => <TodoItem onChangeCompletionStatus={toggleCompletion} {...todo} />) // title={ todo.title } isCompleted={ todo.isCompleted }
       }
     </Container>
   );

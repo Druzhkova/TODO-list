@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Header, Form, TodoItem } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodoActions, changeTodoCompletionStatus, deleteTodoActions, changeCurrentPage } from "./actions";
-import { useLocation, Route, Switch } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 
 
 export function TodoList() {

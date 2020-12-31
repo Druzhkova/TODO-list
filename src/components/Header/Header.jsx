@@ -78,7 +78,10 @@ const Inner = styled.div`
   }
 `
 const Title = styled.div`
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;

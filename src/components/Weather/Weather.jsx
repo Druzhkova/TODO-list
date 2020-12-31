@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import ReactLoading from 'react-loading'
 
 export function Weather() {
   const { data, loading, errorMessage } = useSelector((state) => state.weather);
@@ -9,7 +10,7 @@ export function Weather() {
   return (
     <div>
         {
-          loading ? <Inner>Loading...</Inner>
+          loading ? <Inner><ReactLoading type='bars' color='white' height={30} width={30} /></Inner>
            : errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage>
            : <Inner>{city}, {temperature}°C</Inner>
         }

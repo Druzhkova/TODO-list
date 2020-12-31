@@ -97,6 +97,7 @@ const EmptyText = styled.div`
   font-size: 16px;
 `
 const Content = styled.div`
+  text-align: center;
   padding: 10px 20px;
 `
 const Inner = styled.ul`

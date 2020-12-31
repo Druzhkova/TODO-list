@@ -1,12 +1,9 @@
-import React, { useCallback, useState, useMemo } from "react";
+import React, { useCallback, useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
 import { NavLink } from 'react-router-dom';
 import imgBackground from "../../assets/background.jpg"
 
 export function Header() {
-
-  let time = new Date().toLocaleTimeString();
-
   let updataData = useMemo(() => {
     let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
     return new Date().toLocaleDateString('en-US', options)
@@ -14,12 +11,16 @@ export function Header() {
   
   let data = updataData;
 
-  const [currentTime, setCurrentTime] = useState(time);
+  const [currentTime, setCurrentTime] = useState(null);
 
   const updateTime = useCallback(() => {
-    time = new Date().toLocaleTimeString();
+    let time = new Date().toLocaleTimeString();
     setCurrentTime(time)
   }, []);
+
+  useEffect(() => {
+    updateTime()
+  }, [updateTime])
 
   setInterval(updateTime, 1000)
 

@@ -54,34 +54,55 @@ export function TodoList() {
   return (
     <Container>
       <Header onButtonClick={setCurrentPage} page={currentPage} />
-      <Form onSubmit={addTodo} />
-      {
-        isNoTodos ? (
-          <span>{emptyText}</span>
-        ) : (
-          filteredTodos.map((todo) => (
-            <TodoItem
-              onChangeCompletionStatus={toggleCompletion}
-              onDelete={deleteTodo}
-              page={currentPage}
-              title={todo.title}
-              id={todo.id}
-              isCompleted={todo.isCompleted}
-            />
-          ))
-        )
-      }
-
+      <Content>
+        <Form onClick={addTodo} />
+        {
+          isNoTodos ? (
+            <EmptyText>{emptyText}</EmptyText>
+          ) : (
+            <Inner>
+              {
+                filteredTodos.map((todo) => (
+                  <TodoItem
+                    onChangeCompletionStatus={toggleCompletion}
+                    onDelete={deleteTodo}
+                    page={currentPage}
+                    title={todo.title}
+                    id={todo.id}
+                    isCompleted={todo.isCompleted}
+                  />
+                ))
+              }
+            </Inner>
+          )
+        }
+      </Content>
     </Container>
   );
 }
 
 const Container = styled.div`
-  text-align: center;
-  margin: 20px auto;
-  max-width: 700px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 560px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
+`
+const EmptyText = styled.div`
+  color: #8e979c;
+  font-size: 16px;
+`
+const Content = styled.div`
+  padding: 10px 20px;
+`
+const Inner = styled.ul`
+  margin-left: 0;
+  padding: 0;
+  letter-spacing: none;
+  height: 220px;
+  overflow: auto;
 `

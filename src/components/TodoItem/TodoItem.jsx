@@ -1,8 +1,8 @@
-  import React, { useCallback } from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
-import { Button } from "../Button";
+import imgDelete from "../../assets/delete.png"
 
-export function TodoItem({ title, isCompleted, id, onChangeCompletionStatus, onDelete}) {
+export function TodoItem({ title, id, onChangeCompletionStatus, onDelete, isCompleted}) {
   
   const onCompletionButtonClick = useCallback(() => {
     onChangeCompletionStatus(id);
@@ -13,38 +13,80 @@ export function TodoItem({ title, isCompleted, id, onChangeCompletionStatus, onD
   }, [id, onDelete])
 
   return (
-    <Container isCompleted={isCompleted}>
-      <Title>{title}</Title>
-      <StyledInner>
-        <StyledButon onClick={onCompletionButtonClick} color={isCompleted ? "#FCC10B" : "#28A745"}>
-          {isCompleted ? "Undo" : "Done"}
-        </StyledButon>
-        <StyledButon onClick={onDeleteClick} color="#DB3646">Delete</StyledButon>
-      </StyledInner>
+    <Container>
+      <Inner isCompleted={isCompleted}>
+        <SpanCheckBox onClick={onCompletionButtonClick} isCompleted={isCompleted}></SpanCheckBox>
+          {title}
+      </Inner>
+      <Delete onClick={onDeleteClick}><img src={imgDelete} alt=""/></Delete>
     </Container>
   );
 }
 
-const StyledButon = styled(Button)`
-  margin-left: 10px;
+const Delete = styled.span`
+  cursor: pointer;
+  padding: 5px 10px;
 `;
 
-const StyledInner = styled.div`
-  min-width: 165px;
-`;
-
-const Title = styled.span`
-  margin: 0 10px;
-`;
-
-const Container = styled.div`
-  min-width: 490px;
-  max-width: 700px;
-  border: 1px solid #eaebec;
-  border-radius: 5px;
+const Container = styled.li`
+  user-select: none;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: ${({isCompleted}) => isCompleted ? '#C3E5CA' : 'white'}
+`;
+
+const Inner = styled.div`
+  color: #6c717b;
+  font-size: 15px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 3px;
+  display: inline-block;
+  padding: 5px 5px 5px 30px;
+  ${(props) => props.isCompleted ? `
+    color: #aeb7c6;
+    text-decoration: line-through;
+  ` : ''}
+`;
+
+const SpanCheckBox = styled.span`
+  left: 4px;
+  top: 50%;
+  position: absolute;
+  transform: translatey(-50%);
+  width: 18px;
+  height: 18px;
+  display: block;
+  background: white;
+  border-radius: 3px;
+  border: 1px solid #b8bfcc;
+  box-shadow: 0 2px 3px #f0f4f8;
+
+  ${(props) => props.isCompleted ? `
+    &::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      right: -4px;
+      width: 18px;
+      height: 2px;
+      background: #6c717b;
+      border-radius: 10%;
+      transform: rotate(-45deg);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 7px;
+      right: 9px;
+      width: 7px;
+      height: 2px;
+      background: #6c717b;
+      border-radius: 10%;
+      transform: rotate(42deg);
+    }
+  ` : ''} 
+
+
 `;

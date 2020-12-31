@@ -1,44 +1,46 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import { Button } from "../Button";
 
-export function Form({ onSubmit }) {
+export function Form({ onClick }) {
   const [imputValue, setImputValue] = useState("");
 
-  const onSubmitHandler = useCallback(
-    (evt) => {
-      evt.preventDefault();
-      onSubmit(imputValue);
+  const onClickHandler = useCallback(() => {
+      onClick(imputValue);
       setImputValue("");
-    },
-    [onSubmit, imputValue]
-  );
+    },[onClick, imputValue]);
 
   const onChange = useCallback((evt) => setImputValue(evt.target.value), [setImputValue]);
 
   return (
-    <StyledForm onSubmit={onSubmitHandler}>
-      <label htmlFor="todoInput">
-        Add a todo for today
-        <Input value={imputValue} onChange={onChange} id="todoInput" />
-      </label>
-      <Button>Add</Button>
+    <StyledForm>
+      <Input value={imputValue} onChange={onChange} placeholder="Add your task here..."/>
+      <Button onClick={onClickHandler}>
+        +
+      </Button>
     </StyledForm>
   );
 }
 
 const Input = styled.input`
-  width: 200px;
-  margin: 0 30px;
-  padding: 7px 10px;
-  border: 1px solid #eaebec;
-  border-radius: 5px;
+  padding: 0 5px;
+  font-size: 1.2rem;
+  margin-top: 5px;
+  color: #8e979c;
+  border: none;
   outline: none;
 `;
 
 const StyledForm = styled.form`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0 30px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 0 10px 0 5px;
+  border-bottom: 1px solid #8e979c;
+`;
+
+const Button = styled.form`
+  font-size: 32px;
+  color: #8e979c;
+  font-weight: 600;
+  cursor: pointer;
 `;

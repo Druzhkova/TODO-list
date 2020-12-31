@@ -15,4 +15,4 @@
 
 ### How the application might look like:
 
-<img src="./assets/example-todo-list.gif">
+<img src="./src/assets/example-todo-list.gif">

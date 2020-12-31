@@ -11,8 +11,8 @@ export function Weather() {
     <div>
         {
           loading ? <Inner><ReactLoading type='bars' color='white' height={30} width={30} /></Inner>
-           : errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage>
-           : <Inner>{city}, {temperature}°C</Inner>
+           : 
+          (errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : <Inner>{city}, {temperature}°C</Inner>)
         }
     </div>
   );

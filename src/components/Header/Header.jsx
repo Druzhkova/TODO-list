@@ -2,6 +2,7 @@ import React, { useCallback, useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
 import { NavLink } from 'react-router-dom';
 import imgBackground from "../../assets/background.jpg"
+import { Weather } from "../index.js";
 
 export function Header() {
   let updataData = useMemo(() => {
@@ -29,6 +30,7 @@ export function Header() {
       <CoverImg imgBackground={imgBackground}>
         <Inner>
           <Title>
+            <Weather />
             <StyledData>{data}</StyledData>
             {currentTime}
           </Title>
@@ -64,7 +66,7 @@ const CoverImg = styled.div`
 `
 const Inner = styled.div`
   &::after{
-    background: rgba(0, 0, 0, .3);
+    background: rgba(0, 0, 0, .4);
     content: '';
     top: 0;
     left: 0;

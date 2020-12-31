@@ -1,9 +1,11 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useEffect } from "react";
 import styled from "styled-components";
 import { Header, Form, TodoItem } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodoActions, changeTodoCompletionStatus, deleteTodoActions, changeCurrentPage } from "./actions";
 import { useLocation } from "react-router-dom"
+import { getWeatherRequest } from "../components/Weather/actions";
+import update from "../assets/update.svg"
 
 
 export function TodoList() {
@@ -30,6 +32,14 @@ export function TodoList() {
     dispatch(changeCurrentPage(nextPage));
   }, [dispatch])
 
+  const getWeather = useCallback(() => {
+    dispatch(getWeatherRequest());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getWeatherRequest());
+  }, [dispatch])
+
   const filteredTodos = todos.filter((todo) => {
     if (pathname.includes("active")) {
       return todo.isCompleted === false;
@@ -53,6 +63,9 @@ export function TodoList() {
 
   return (
     <Container>
+      <Update onClick={getWeather}>
+        <img  src={update} alt=""/>
+      </Update>
       <Header onButtonClick={setCurrentPage} page={currentPage} />
       <Content>
         <Form onClick={addTodo} />
@@ -107,3 +120,10 @@ const Inner = styled.ul`
   height: 220px;
   overflow: auto;
 `
+const Update = styled.div`
+  cursor: pointer;
+  position: absolute;
+  z-index: 50;
+  top: 13px;
+  right: 13px;
+`;

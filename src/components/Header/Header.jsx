@@ -1,21 +1,43 @@
-import React from "react";
+import React, { useCallback, useState, useMemo } from "react";
 import styled from "styled-components";
 import { NavLink } from 'react-router-dom';
 import imgBackground from "../../assets/background.jpg"
 
 export function Header() {
+
+  let time = new Date().toLocaleTimeString();
+
+  let updataData = useMemo(() => {
+    let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    return new Date().toLocaleDateString('en-US', options)
+  }, []);
+  
+  let data = updataData;
+
+  const [currentTime, setCurrentTime] = useState(time);
+
+  const updateTime = useCallback(() => {
+    time = new Date().toLocaleTimeString();
+    setCurrentTime(time)
+  }, []);
+
+  setInterval(updateTime, 1000)
+
   return (
     <>
-    <CoverImg imgBackground={imgBackground}>
-      <Inner>
-        <Title>Vacation</Title>
-      </Inner>
-    </CoverImg>
-    <StyledHeader>
-      <StyledNavLink style={{color: "#66A7C9"}} activeStyle={{ color: "#F3706C" }} to="/all">All</StyledNavLink>
-      <StyledNavLink style={{color: "#66A7C9"}} activeStyle={{ color: "#F3706C" }} to="/active">Active</StyledNavLink>
-      <StyledNavLink style={{color: "#66A7C9"}} activeStyle={{ color: "#F3706C" }} to="/done">Done</StyledNavLink>
-    </StyledHeader>
+      <CoverImg imgBackground={imgBackground}>
+        <Inner>
+          <Title>
+            <StyledData>{data}</StyledData>
+            {currentTime}
+          </Title>
+        </Inner>
+      </CoverImg>
+      <StyledHeader>
+        <StyledNavLink style={{color: "#66A7C9"}} activeStyle={{ color: "#F3706C" }} to="/all">All</StyledNavLink>
+        <StyledNavLink style={{color: "#66A7C9"}} activeStyle={{ color: "#F3706C" }} to="/active">Active</StyledNavLink>
+        <StyledNavLink style={{color: "#66A7C9"}} activeStyle={{ color: "#F3706C" }} to="/done">Done</StyledNavLink>
+      </StyledHeader>
     </>
   );
 }
@@ -53,13 +75,16 @@ const Inner = styled.div`
   }
 `
 const Title = styled.div`
+  text-align: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Nunito', sans-serif;
-  text-transform: uppercase;
   font-size: 2.8rem;
   z-index: 10;
-  font-weight: 700;
+`
+const StyledData = styled.p`
+  margin: 5px 0;
+  font-size: 1.2rem;
 `

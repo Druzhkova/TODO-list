@@ -67,8 +67,8 @@ const SpanCheckBox = styled.span`
       content: '';
       position: absolute;
       top: 4px;
-      right: -4px;
-      width: 18px;
+      right: -5px;
+      width: 18.5px;
       height: 2px;
       background: #6c717b;
       border-radius: 10%;
@@ -78,7 +78,7 @@ const SpanCheckBox = styled.span`
     &::before {
       content: '';
       position: absolute;
-      top: 7px;
+      top: 8px;
       right: 9px;
       width: 7px;
       height: 2px;

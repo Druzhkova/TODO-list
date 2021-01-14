@@ -1,29 +1,33 @@
-import React, { useCallback, useState, useMemo, useEffect } from "react";
-import styled from "styled-components";
+import React, {
+  useCallback, useState, useMemo, useEffect,
+} from 'react';
+import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import imgBackground from "../../assets/background.jpg"
-import { Weather } from "../index.js";
+import imgBackground from '../../assets/background.jpg';
+import { Weather } from '../Weather';
 
 export function Header() {
-  let updataData = useMemo(() => {
-    let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-    return new Date().toLocaleDateString('en-US', options)
+  const updataData = useMemo(() => {
+    const options = {
+      weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
+    };
+    return new Date().toLocaleDateString('en-US', options);
   }, []);
-  
-  let data = updataData;
+
+  const data = updataData;
 
   const [currentTime, setCurrentTime] = useState(null);
 
   const updateTime = useCallback(() => {
-    let time = new Date().toLocaleTimeString();
-    setCurrentTime(time)
+    const time = new Date().toLocaleTimeString();
+    setCurrentTime(time);
   }, []);
 
   useEffect(() => {
-    updateTime()
-  }, [updateTime])
+    updateTime();
+  }, [updateTime]);
 
-  setInterval(updateTime, 1000)
+  setInterval(updateTime, 1000);
 
   return (
     <>
@@ -37,9 +41,9 @@ export function Header() {
         </Inner>
       </CoverImg>
       <StyledHeader>
-        <StyledNavLink style={{color: "#66A7C9"}} activeStyle={{ color: "#F3706C" }} to="/all">All</StyledNavLink>
-        <StyledNavLink style={{color: "#66A7C9"}} activeStyle={{ color: "#F3706C" }} to="/active">Active</StyledNavLink>
-        <StyledNavLink style={{color: "#66A7C9"}} activeStyle={{ color: "#F3706C" }} to="/done">Done</StyledNavLink>
+        <StyledNavLink style={{ color: '#66A7C9' }} activeStyle={{ color: '#F3706C' }} to="/all">All</StyledNavLink>
+        <StyledNavLink style={{ color: '#66A7C9' }} activeStyle={{ color: '#F3706C' }} to="/active">Active</StyledNavLink>
+        <StyledNavLink style={{ color: '#66A7C9' }} activeStyle={{ color: '#F3706C' }} to="/done">Done</StyledNavLink>
       </StyledHeader>
     </>
   );
@@ -49,12 +53,12 @@ const StyledHeader = styled.div`
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
-`
+`;
 
 const StyledNavLink = styled(NavLink)`
   margin: 15px 5px;
   text-decoration: none;
-`
+`;
 const CoverImg = styled.div`
   background-image: url('${(props) => props.imgBackground}');
   height: 190px;
@@ -63,7 +67,7 @@ const CoverImg = styled.div`
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: relative;
-`
+`;
 const Inner = styled.div`
   &::after{
     background: rgba(0, 0, 0, .4);
@@ -76,7 +80,7 @@ const Inner = styled.div`
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
-`
+`;
 const Title = styled.div`
   display: flex;
   flex-direction: column;
@@ -89,8 +93,8 @@ const Title = styled.div`
   font-family: 'Nunito', sans-serif;
   font-size: 2.8rem;
   z-index: 10;
-`
+`;
 const StyledData = styled.p`
   margin: 5px 0;
   font-size: 1.2rem;
-`
+`;

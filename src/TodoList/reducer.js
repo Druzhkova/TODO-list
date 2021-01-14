@@ -3,10 +3,10 @@ import {
   DELETE_TODO,
   CHANGE_TODO_COMPLETION_STATUS,
   CHANGE_CURRENT_PAGE,
-} from "./actions";
+} from './actions';
 
 const initialState = {
-  currentPage: "all",
+  currentPage: 'all',
   todos: [],
 };
 

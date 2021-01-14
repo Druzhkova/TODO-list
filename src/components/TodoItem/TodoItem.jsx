@@ -1,24 +1,25 @@
-import React, { useCallback } from "react";
-import styled from "styled-components";
-import imgDelete from "../../assets/delete.png"
+import React, { useCallback } from 'react';
+import styled from 'styled-components';
+import imgDelete from '../../assets/delete.png';
 
-export function TodoItem({ title, id, onChangeCompletionStatus, onDelete, isCompleted}) {
-  
+export function TodoItem({
+  title, id, onChangeCompletionStatus, onDelete, isCompleted,
+}) {
   const onCompletionButtonClick = useCallback(() => {
     onChangeCompletionStatus(id);
   }, [id, onChangeCompletionStatus]);
 
   const onDeleteClick = useCallback(() => {
-    onDelete(id)
-  }, [id, onDelete])
+    onDelete(id);
+  }, [id, onDelete]);
 
   return (
     <Container>
       <Inner isCompleted={isCompleted}>
-        <SpanCheckBox onClick={onCompletionButtonClick} isCompleted={isCompleted}></SpanCheckBox>
-          {title}
+        <SpanCheckBox onClick={onCompletionButtonClick} isCompleted={isCompleted} />
+        {title}
       </Inner>
-      <Delete onClick={onDeleteClick}><img src={imgDelete} alt=""/></Delete>
+      <Delete onClick={onDeleteClick}><img src={imgDelete} alt="" /></Delete>
     </Container>
   );
 }
@@ -43,10 +44,10 @@ const Inner = styled.div`
   border-radius: 3px;
   display: inline-block;
   padding: 5px 5px 5px 30px;
-  ${(props) => props.isCompleted ? `
+  ${(props) => (props.isCompleted ? `
     color: #aeb7c6;
     text-decoration: line-through;
-  ` : ''}
+  ` : '')}
 `;
 
 const SpanCheckBox = styled.span`
@@ -62,7 +63,7 @@ const SpanCheckBox = styled.span`
   border: 1px solid #b8bfcc;
   box-shadow: 0 2px 3px #f0f4f8;
 
-  ${(props) => props.isCompleted ? `
+  ${(props) => (props.isCompleted ? `
     &::after {
       content: '';
       position: absolute;
@@ -86,7 +87,7 @@ const SpanCheckBox = styled.span`
       border-radius: 10%;
       transform: rotate(42deg);
     }
-  ` : ''} 
+  ` : '')} 
 
 
 `;

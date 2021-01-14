@@ -29,8 +29,14 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "airbnb"
+    ],
+    "rules": {
+      "import/prefer-default-export": 0,
+      "linebreak-style": 0,
+      "react/prop-types": 0,
+      "react/jsx-props-no-spreading": 0
+    }
   },
   "browserslist": {
     "production": [
@@ -45,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-config-airbnb": "^18.2.1",
     "gh-pages": "^3.1.0"
   }
 }

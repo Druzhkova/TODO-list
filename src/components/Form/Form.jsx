@@ -1,19 +1,19 @@
-import React, { useCallback, useState } from "react";
-import styled from "styled-components";
+import React, { useCallback, useState } from 'react';
+import styled from 'styled-components';
 
 export function Form({ onClick }) {
-  const [imputValue, setImputValue] = useState("");
+  const [imputValue, setImputValue] = useState('');
 
   const onClickHandler = useCallback(() => {
-      onClick(imputValue);
-      setImputValue("");
-    },[onClick, imputValue]);
+    onClick(imputValue);
+    setImputValue('');
+  }, [onClick, imputValue]);
 
   const onChange = useCallback((evt) => setImputValue(evt.target.value), [setImputValue]);
 
   return (
     <StyledForm>
-      <Input value={imputValue} onChange={onChange} placeholder="Add your task here..."/>
+      <Input value={imputValue} onChange={onChange} placeholder="Add your task here..." />
       <Button onClick={onClickHandler}>
         +
       </Button>
